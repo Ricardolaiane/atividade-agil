@@ -22,6 +22,9 @@ import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
 import javax.swing.JToolBar;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import java.awt.ScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Home {
 
@@ -33,11 +36,12 @@ public class Home {
 	private JButton btnLogin;
 	private JLabel lblNewLabel_3;
 	private JList list_usuarios;
-	private JPanel panel_livros;
-	private JScrollPane scrollPane_livros;
+	private JScrollPane scrollPaneTabela;
+	private JTable tabelaLivros;
 	
 	public Home() {
 		frameHome = new JFrame();
+		frameHome.getContentPane().setBackground(Color.WHITE);
 		frameHome.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\ricar\\eclipse-workspace\\Atividade-curso\\src\\util\\logo.jpg.jpg"));
 		frameHome.setTitle("EsseEuJ·Li");
 		frameHome.setBounds(500, 500, 750, 600);
@@ -57,33 +61,72 @@ public class Home {
 		panel_login.setBackground(Color.WHITE);
 		GroupLayout groupLayout = new GroupLayout(frameHome.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_logo, GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-						.addComponent(panel_ranking, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_estante, GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-						.addComponent(panel_login, GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
-					.addContainerGap())
+		    groupLayout.createParallelGroup(Alignment.TRAILING)
+		        .addGroup(groupLayout.createSequentialGroup()
+		            .addContainerGap()
+		            .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+		                .addComponent(panel_ranking, 0, 0, Short.MAX_VALUE)
+		                .addComponent(panel_logo, GroupLayout.PREFERRED_SIZE, 201, Short.MAX_VALUE))
+		            .addPreferredGap(ComponentPlacement.UNRELATED)
+		            .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+		                .addComponent(panel_estante, GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+		                .addComponent(panel_login, GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
+		            .addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_logo, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_login, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_estante, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-						.addComponent(panel_ranking, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
-					.addGap(0))
+		    groupLayout.createParallelGroup(Alignment.TRAILING)
+		        .addGroup(groupLayout.createSequentialGroup()
+		            .addContainerGap()
+		            .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		                .addComponent(panel_logo, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+		                .addComponent(panel_login, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE))
+		            .addPreferredGap(ComponentPlacement.RELATED)
+		            .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+		                .addComponent(panel_estante, 0, 0, Short.MAX_VALUE)
+		                .addComponent(panel_ranking, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
+		            .addGap(0))
 		);
 		
-		btnLogin = new JButton("Login");
+		JLabel lblNewLabel_2 = new JLabel("Estante");
+		
+		scrollPaneTabela = new JScrollPane();
+		GroupLayout gl_panel_estante = new GroupLayout(panel_estante);
+		gl_panel_estante.setHorizontalGroup(
+		    gl_panel_estante.createParallelGroup(Alignment.LEADING)
+		        .addGroup(gl_panel_estante.createSequentialGroup()
+		            .addContainerGap()
+		            .addGroup(gl_panel_estante.createParallelGroup(Alignment.LEADING)
+		                .addComponent(scrollPaneTabela, GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+		                .addGroup(gl_panel_estante.createSequentialGroup()
+		                    .addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+		                    .addContainerGap(421, Short.MAX_VALUE))))
+		);
+		gl_panel_estante.setVerticalGroup(
+		    gl_panel_estante.createParallelGroup(Alignment.LEADING)
+		        .addGroup(gl_panel_estante.createSequentialGroup()
+		            .addGap(18)
+		            .addComponent(lblNewLabel_2)
+		            .addPreferredGap(ComponentPlacement.UNRELATED)
+		            .addComponent(scrollPaneTabela, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+		            .addContainerGap())
+		);
+		
+		tabelaLivros = new JTable();
+		tabelaLivros.setFont(new Font("DejaVu Serif", Font.PLAIN, 11));
+		tabelaLivros.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+		tabelaLivros.setFocusable(false);
+		tabelaLivros.setIntercellSpacing(new java.awt.Dimension(0, 0));
+		tabelaLivros.setRowHeight(50);
+		tabelaLivros.setSelectionBackground(new java.awt.Color(204, 255, 204));
+		tabelaLivros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+		tabelaLivros.setShowHorizontalLines(true);
+		tabelaLivros.setShowVerticalLines(false);
+		tabelaLivros.getTableHeader().setReorderingAllowed(false);
+		tabelaLivros.setVisible(true);
+		scrollPaneTabela.setViewportView(tabelaLivros);
+		panel_estante.setLayout(gl_panel_estante);
+		
+		btnLogin = new JButton("Logout");
 		btnLogin.setFont(new Font("DejaVu Serif", Font.PLAIN, 11));
 		btnLogin.setBackground(Color.GRAY);
 		
@@ -131,46 +174,6 @@ public class Home {
 		);
 		panel_logo.setLayout(gl_panel_logo);
 		
-		JLabel lblNewLabel_2 = new JLabel("Estante");
-		lblNewLabel_2.setFont(new Font("DejaVu Serif", Font.PLAIN, 11));
-		
-		panel_livros = new JPanel();
-		GroupLayout gl_panel_estante = new GroupLayout(panel_estante);
-		gl_panel_estante.setHorizontalGroup(
-			gl_panel_estante.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_estante.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_estante.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_estante.createSequentialGroup()
-							.addComponent(panel_livros, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(gl_panel_estante.createSequentialGroup()
-							.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGap(407))))
-		);
-		gl_panel_estante.setVerticalGroup(
-			gl_panel_estante.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_estante.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel_2)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panel_livros, GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		
-		scrollPane_livros = new JScrollPane();
-		GroupLayout gl_panel_livros = new GroupLayout(panel_livros);
-		gl_panel_livros.setHorizontalGroup(
-			gl_panel_livros.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane_livros, GroupLayout.PREFERRED_SIZE, 441, GroupLayout.PREFERRED_SIZE)
-		);
-		gl_panel_livros.setVerticalGroup(
-			gl_panel_livros.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane_livros, GroupLayout.PREFERRED_SIZE, 418, GroupLayout.PREFERRED_SIZE)
-		);
-		panel_livros.setLayout(gl_panel_livros);
-		panel_estante.setLayout(gl_panel_estante);
-		
 		list_usuarios = new JList();
 		list_usuarios.setBackground(Color.MAGENTA);
 		list_usuarios.setFont(new Font("DejaVu Serif", Font.PLAIN, 14));
@@ -186,22 +189,22 @@ public class Home {
 		lblNewLabel_1.setFont(new Font("DejaVu Serif", Font.PLAIN, 11));
 		GroupLayout gl_panel_ranking = new GroupLayout(panel_ranking);
 		gl_panel_ranking.setHorizontalGroup(
-			gl_panel_ranking.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_ranking.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_ranking.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1)
-						.addComponent(list_usuarios, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
-					.addContainerGap())
+		    gl_panel_ranking.createParallelGroup(Alignment.LEADING)
+		        .addGroup(gl_panel_ranking.createSequentialGroup()
+		            .addContainerGap()
+		            .addGroup(gl_panel_ranking.createParallelGroup(Alignment.LEADING)
+		                .addComponent(list_usuarios, GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+		                .addComponent(lblNewLabel_1))
+		            .addContainerGap())
 		);
 		gl_panel_ranking.setVerticalGroup(
-			gl_panel_ranking.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_ranking.createSequentialGroup()
-					.addGap(12)
-					.addComponent(lblNewLabel_1)
-					.addGap(18)
-					.addComponent(list_usuarios, GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-					.addContainerGap())
+		    gl_panel_ranking.createParallelGroup(Alignment.LEADING)
+		        .addGroup(gl_panel_ranking.createSequentialGroup()
+		            .addGap(24)
+		            .addComponent(lblNewLabel_1)
+		            .addPreferredGap(ComponentPlacement.RELATED)
+		            .addComponent(list_usuarios, GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+		            .addContainerGap())
 		);
 		panel_ranking.setLayout(gl_panel_ranking);
 		frameHome.getContentPane().setLayout(groupLayout);
@@ -330,13 +333,24 @@ public class Home {
 	}
 
 
-	public JScrollPane getScrollPane_livros() {
-		return scrollPane_livros;
-	}
+    public JScrollPane getScrollPaneTabela() {
+        return scrollPaneTabela;
+    }
 
 
-	public void setScrollPane_livros(JScrollPane scrollPane_livros) {
-		this.scrollPane_livros = scrollPane_livros;
-	}
+    public void setScrollPaneTabela(JScrollPane scrollPaneTabela) {
+        this.scrollPaneTabela = scrollPaneTabela;
+    }
+
+
+    public JTable getTabelaLivros() {
+        return tabelaLivros;
+    }
+
+
+    public void setTabelaLivros(JTable tabelaLivros) {
+        this.tabelaLivros = tabelaLivros;
+    }
+	
 }
 

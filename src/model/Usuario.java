@@ -25,7 +25,7 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return  this.nome + " "+ this.pontos +" " + "pontos";
+		return  this.nome + " - "+ this.pontos +"  " + "pontos";
 	}
 	public String getUser() {
 		return user;

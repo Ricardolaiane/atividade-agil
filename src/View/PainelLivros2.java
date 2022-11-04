@@ -23,17 +23,17 @@ public class PainelLivros2 extends JPanel {
 	
 	public PainelLivros2() {
 		setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		setMaximumSize(new Dimension(100, 100));
+		setMaximumSize(new Dimension(10, 10));
 		setBackground(Color.PINK);
 		
-		lblLivro = new JLabel("New label");
+		lblLivro = new JLabel("");
 		lblLivro.setIcon(new ImageIcon("C:\\Users\\ricar\\eclipse-workspace\\Atividade-curso\\src\\util\\livro.png"));
 		
 		lblTitulo = new JLabel("titulo");
 		lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lblTitulo.setFont(new Font("DejaVu Serif", Font.PLAIN, 14));
 		
-		lblPontos = new JLabel("Pontos");
+		lblPontos = new JLabel("");
 		
 		chckbxNewCheckBox = new JCheckBox("Esse Eu Já Li!");
 		chckbxNewCheckBox.setBackground(Color.WHITE);

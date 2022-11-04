@@ -6,14 +6,25 @@ public class Livro {
 	private String titulo;
 	private String genero;
 	private int qtdPaginas;
+	private boolean isCompleted;
 	
 	
-	@Override
-	public String toString() {
-		
-		return  this.titulo;
+	public Livro() {
+	  
+	    
 	}
-	public String getTitulo() {
+	
+
+
+	@Override
+    public String toString() {
+        return "Livro [id=" + id + ", titulo=" + titulo + ", genero=" + genero + ", qtdPaginas=" + qtdPaginas
+                + ", isCompleted=" + isCompleted + "]";
+    }
+
+
+
+    public String getTitulo() {
 		return titulo;
 	}
 	public void setTitulo(String titulo) {
@@ -37,7 +48,16 @@ public class Livro {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public void setCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
+    }
+
+   
 	
 	
 	

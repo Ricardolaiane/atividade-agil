@@ -1,18 +1,22 @@
 package Main;
 
-import Controller.HomeController;
-import DAO.LivroDao;
+import Controller.LoginController;
 import DAO.UsuarioDao;
-import View.Home;
+import View.LoginView;
 import model.Usuario;
 
 public class Main {
 	
 	public static void main(String[]args) {
-		Usuario usuario = new Usuario();
+		/**Usuario usuario = new Usuario();
 		Home home = new Home();
 		UsuarioDao usuarioDao = new UsuarioDao();
-		HomeController homeController = new HomeController(home, usuario, usuarioDao);
+		HomeController homeController = new HomeController(home, usuario, usuarioDao);*/
+	    
+	    LoginView login = new LoginView();
+	    Usuario usuario = new Usuario();
+	    UsuarioDao usuarioDao = new UsuarioDao();
+	    LoginController loginController = new LoginController(login, usuario, usuarioDao);
 		
 		
 		
