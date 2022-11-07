@@ -33,8 +33,8 @@ public class Home {
 	private JPanel panel_ranking;
 	private JPanel panel_logo;
 	private JPanel panel_login;
-	private JButton btnLogin;
-	private JLabel lblNewLabel_3;
+	private JButton btnLogout;
+	private JLabel lblNome;
 	private JList list_usuarios;
 	private JScrollPane scrollPaneTabela;
 	private JTable tabelaLivros;
@@ -126,30 +126,30 @@ public class Home {
 		scrollPaneTabela.setViewportView(tabelaLivros);
 		panel_estante.setLayout(gl_panel_estante);
 		
-		btnLogin = new JButton("Logout");
-		btnLogin.setFont(new Font("DejaVu Serif", Font.PLAIN, 11));
-		btnLogin.setBackground(Color.GRAY);
+		btnLogout = new JButton("Logout");
+		btnLogout.setFont(new Font("DejaVu Serif", Font.PLAIN, 11));
+		btnLogout.setBackground(Color.GRAY);
 		
-		lblNewLabel_3 = new JLabel("Usuário");
+		lblNome = new JLabel();
 		GroupLayout gl_panel_login = new GroupLayout(panel_login);
 		gl_panel_login.setHorizontalGroup(
 			gl_panel_login.createParallelGroup(Alignment.TRAILING)
 				.addGroup(Alignment.LEADING, gl_panel_login.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblNewLabel_3)
+					.addComponent(lblNome)
 					.addPreferredGap(ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
-					.addComponent(btnLogin)
+					.addComponent(btnLogout)
 					.addContainerGap())
 		);
 		gl_panel_login.setVerticalGroup(
 			gl_panel_login.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_login.createSequentialGroup()
 					.addGap(32)
-					.addComponent(lblNewLabel_3)
+					.addComponent(lblNome)
 					.addContainerGap())
 				.addGroup(Alignment.TRAILING, gl_panel_login.createSequentialGroup()
 					.addContainerGap(45, Short.MAX_VALUE)
-					.addComponent(btnLogin)
+					.addComponent(btnLogout)
 					.addContainerGap())
 		);
 		panel_login.setLayout(gl_panel_login);
@@ -254,27 +254,27 @@ public class Home {
 
 	
 
-	public JButton getBtnLogin() {
-		return btnLogin;
+	public JButton getbtnLogout() {
+		return btnLogout;
 	}
 
 
-	public void setBtnLogin(JButton btnLogin) {
-		this.btnLogin = btnLogin;
+	public void setbtnLogout(JButton btnLogout) {
+		this.btnLogout = btnLogout;
 	}
 
 
-	public JLabel getLblNewLabel_3() {
-		return lblNewLabel_3;
-	}
-
-	public void setLblNewLabel_3(JLabel lblNewLabel_3) {
-		this.lblNewLabel_3 = lblNewLabel_3;
-	}
+	public JLabel getLblNome() {
+        return lblNome;
+    }
 
 
+    public void setLblNome(JLabel lblNome) {
+        this.lblNome = lblNome;
+    }
 
-	public JList getList_1() {
+
+    public JList getList_1() {
 		return list_usuarios;
 	}
 

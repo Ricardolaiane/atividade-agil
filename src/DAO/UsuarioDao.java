@@ -5,17 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Livro;
 import model.Usuario;
 
 
 
 public class UsuarioDao {
+    
+  
 	
 	
 	public List<Usuario> getAll(){
 
 
-		String sql = "SELECT * FROM usuarios";
+		String sql = "SELECT * FROM usuarios ORDER BY usuarios.pontos DESC";
 
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -56,70 +60,40 @@ public class UsuarioDao {
 
 	}
 	
-	public List<Usuario> getNome(){
 
-
-		String sql = "SELECT usuarios.nome, usuarios.senha FROM usuarios";
-
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-
-		try {
-			//criação da conexão
-			connection = ConnectionFactory.getConnection();
-
-			//preparando a consulta
-			statement = connection.prepareStatement(sql);
-
-			//setando o dado pedido
-			//statement.setInt(1, idProject);
-
-			//passando dados da query para a variável do tipo ResultSet
-			resultSet = statement.executeQuery();
-
-			while(resultSet.next()) {
-				Usuario usuario = new Usuario();
-				usuario.setNome(resultSet.getString("nome"));
-				usuarios.add(usuario);
-
-
-			}
-
-		}catch(Exception e) {
-			throw new RuntimeException("Erro ao buscar usuario" + e.getMessage(), e);
-		}finally {
-			ConnectionFactory.closeConnection(connection, statement, resultSet);
-		}
-
-		return usuarios;
-
-	}
 	
 	public Usuario buscaPessoaPorUser(Usuario usuario){
-        String sql = "SELECT usuario.user, usuario.password FROM usuarios  where usuario.user=?";
-        Usuario user = null;
-        Connection con = null;
+        String sql = "SELECT usuarios.user, usuarios.password, usuarios.nome FROM usuarios  where usuarios.user=? "
+                + "AND usuarios.password=?";
+        Usuario user = new Usuario();
+      
+        Connection connection = null;
+      
+        
         try{
-            con = new ConnectionFactory().getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql);
+            connection =  ConnectionFactory.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            
             stmt.setString(1, user.getUser());
+            stmt.setString(2, user.getPassword());
+            
             ResultSet rs = stmt.executeQuery();
 
             if(rs.next()){
                 user = new Usuario();
                 user.setUser(rs.getString("user"));
                 user.setPassword(rs.getString("password"));
+                user.setNome(rs.getString("nome"));
              
             }
 
         } catch (Exception e) {
-            throw new RuntimeException("falha ao tentar executar um comando no BD. Verifique sua conexão");
+            
+            throw new RuntimeException("falha ao tentar executar um comando no BD. Verifique sua conexão"+ e.getMessage());
         }finally{
             try {
-                con.close();
+                connection.close();
+                System.out.println("fechou a conexão");
             } catch (Exception e) {
                 throw new RuntimeException("não foi possível fechar a conexão com o BD/busca senha");
             

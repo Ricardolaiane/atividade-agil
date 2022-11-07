@@ -7,9 +7,22 @@ public class Livro {
 	private String genero;
 	private int qtdPaginas;
 	private boolean isCompleted;
+	private int pontos;
 	
 	
-	public Livro() {
+	public int getPontos() {
+        return pontos;
+    }
+
+
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
+    }
+
+
+
+    public Livro() {
 	  
 	    
 	}
